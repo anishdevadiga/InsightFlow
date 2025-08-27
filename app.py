@@ -13,7 +13,7 @@ def main():
     else:
         describe_dataset(df)
         print()
-        visualize_data(df)
+        #visualize_data(df)
     
 
 if __name__ == "__main__":
