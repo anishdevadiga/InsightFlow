@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+from modules.download_chart import donwload_chart
 
 def fix_arrow_compatibility(df):
     """
@@ -38,6 +39,7 @@ def visualize_data(df):
             ax.set_xlabel("Index")
             ax.set_title(f"Bar Chart : {col}")
         st.pyplot(fig)
+        download_chart(fig,f"Bar_Chart_{col}.png") #download chart 
     #pie chart for catergorical data and using bin for numerical data 
     elif chart_type=="Pie":
         col =st.selectbox("Select Column",df.columns)
@@ -57,6 +59,7 @@ def visualize_data(df):
             st.error("Invalid column selected for Pie Chart")
             return
         st.pyplot(fig)
+        download_chart(fig,f"Pie_Chart_{col}.png")
 
     elif chart_type in ["Line","Histogram","Boxplot"]:
         num_cols=df.select_dtypes(include=['number']).columns.tolist()
@@ -79,6 +82,7 @@ def visualize_data(df):
             ax.set_ylabel(col)
             ax.set_title(f"Boxplot:{col}")
         st.pyplot(fig)
+        download_chart(fig,f"{chart_type}_{col}.png") #download chart
 
     else:
         if len(num_cols)<2:
@@ -92,3 +96,4 @@ def visualize_data(df):
         ax.set_ylabel(col_y)
         ax.set_title(f"Scatter : {col_x} vs {col_y}")
         st.pyplot(fig)
+        download_chart(fig,f"Scatter_Plot_{col_x}_{col_y}.png")
