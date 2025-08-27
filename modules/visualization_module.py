@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from modules.download_chart import donwload_chart
+from modules.download_module import download_chart
 
 def fix_arrow_compatibility(df):
     """
