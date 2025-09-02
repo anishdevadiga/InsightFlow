@@ -48,8 +48,8 @@ def main():
 
         elif st.session_state.action == "ml":
             with st.spinner("Running ML models..."):
-                st.info("This will run machine learning models and predictions")
-                run_ml(df)
+                st.info("Under Development")
+                #run_ml(df)
 
 
 if __name__ == "__main__":

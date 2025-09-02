@@ -13,11 +13,13 @@ def visualize_data(df):
     # Fix Arrow compatibility first
     df = fix_arrow_compatibility(df)
 
+    col = st.selectbox("Select column for visualization", df.columns)
     # Select chart type
     chart_type = st.selectbox(
         "Select chart Type",
         ["Bar", "Pie", "Line", "Scatter", "Histogram", "Boxplot"]
     )
+
 
     # Separate numeric and categorical columns
     num_cols = df.select_dtypes(include=['number']).columns.tolist()
@@ -25,23 +27,28 @@ def visualize_data(df):
 
     # Route to specific chart functions
     if chart_type == "Bar":
-        plot_bar_chart(df, cat_cols)
+        plot_bar_chart(df, cat_cols,col)
     elif chart_type == "Pie":
-        plot_pie_chart(df, cat_cols, num_cols)
+        pass
+        #plot_pie_chart(df, cat_cols, num_cols,col)
     elif chart_type == "Line":
         if num_cols:
-            plot_line_chart(df, num_cols)
+            pass
+            #plot_line_chart(df, num_cols,col)
         else:
             st.warning("No numeric columns available for line chart")
     elif chart_type == "Histogram":
         if num_cols:
-            plot_histogram(df, num_cols)
+            pass
+            #plot_histogram(df, num_cols,col)
         else:
             st.warning("No numeric columns available for histogram")
     elif chart_type == "Boxplot":
         if num_cols:
-            plot_boxplot(df, num_cols)
+            pass
+            #plot_boxplot(df, num_cols,col)
         else:
             st.warning("No numeric columns available for boxplot")
     elif chart_type == "Scatter":
-        plot_scatter_chart(df, num_cols)
+        pass
+        #plot_scatter_chart(df, num_cols)

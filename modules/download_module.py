@@ -1,5 +1,4 @@
 import streamlit as st
-import matplotlib.pyplot as plt
 import io
 
 def download_chart(fig,filename="chart.png"):

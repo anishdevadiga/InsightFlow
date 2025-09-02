@@ -1,5 +1,5 @@
-import matplotlib.pyplot as plt
 import streamlit as st
+import plotly.express as px
 from modules.download_module import download_chart
 
 def plot_scatter_chart(df, num_cols):
@@ -10,11 +10,15 @@ def plot_scatter_chart(df, num_cols):
     col_x = st.selectbox("X axis", num_cols, index=0)
     col_y = st.selectbox("Y axis", num_cols, index=1)
 
-    fig, ax = plt.subplots()
-    ax.scatter(df[col_x], df[col_y])
-    ax.set_xlabel(col_x)
-    ax.set_ylabel(col_y)
-    ax.set_title(f"Scatter: {col_x} vs {col_y}")
+    # Create scatter plot using Plotly
+    fig = px.scatter(
+        df,
+        x=col_x,
+        y=col_y,
+        title=f"Scatter: {col_x} vs {col_y}",
+        labels={col_x: col_x, col_y: col_y},
+        color=None  # can add color option if desired
+    )
 
-    st.pyplot(fig)
+    st.plotly_chart(fig)
     download_chart(fig, f"Scatter_Plot_{col_x}_{col_y}.png")
